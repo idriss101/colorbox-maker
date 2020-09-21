@@ -3,7 +3,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import Snackbar from "@material-ui/core/Snackbar";
 import CloseIcon from "@material-ui/icons/Close";
-import Slider, { Range } from "rc-slider";
+import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./NavBar.css";
 import { IconButton } from "@material-ui/core";
