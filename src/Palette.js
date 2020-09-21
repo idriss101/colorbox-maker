@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import ColorBox from "./ColorBox";
 import "./Palette.css";
 import seedColors from "./seedColors";
-import Slider, { Range } from "rc-slider";
-import "rc-slider/assets/index.css";
-
+import NavBar from "./NavBar";
 export default class Palette extends Component {
   state = {
     level: 500
@@ -24,28 +22,7 @@ export default class Palette extends Component {
     ));
     return (
       <div className="Palette">
-        <div className="slider">
-          <Slider
-            defaultValue={level}
-            min={100}
-            max={900}
-            onAfterChange={this.changeLevel}
-            step={100}
-            trackStyle={{ backgroundColor: "transparent" }}
-            railStyle={{ height: "8px" }}
-            handleStyle={{
-              backgroundColor: "green ",
-              outline: "none",
-              border: "2px solid green",
-              boxShadow: "none",
-              width: "13px",
-              height: "13px",
-              marginLeft: "-7px",
-              marginTop: "-3px"
-            }}
-          />
-        </div>
-
+        <NavBar level={level} changeLevel={this.changeLevel} />
         {/* Navbar goes here */}
         <div className="Palette-colors">
           {/* Bunch of color boxes */}
