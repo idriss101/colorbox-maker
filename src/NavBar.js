@@ -1,24 +1,35 @@
 import React, { Component } from "react";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
+import Snackbar from "@material-ui/core/Snackbar";
+import CloseIcon from "@material-ui/icons/Close";
 import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./NavBar.css";
+import { IconButton } from "@material-ui/core";
 export default class NavBar extends Component {
   state = {
-    format: "hex"
+    format: "hex",
+    open: false
   };
 
-  handleChange = e => {
+  handleFormatChange = e => {
     this.setState({
-      format: e.target.value
+      format: e.target.value,
+      open: true
     });
     this.props.handleChange(e.target.value);
   };
 
+  closeSnackBar = () => {
+    this.setState({
+      open: false
+    });
+  };
+
   render() {
-    const { level, changeLevel, handleChange } = this.props;
-    const { format } = this.state;
+    const { level, changeLevel, handleFormatChange } = this.props;
+    const { format, open } = this.state;
     return (
       <header className="NavBar">
         <div className="logo">
@@ -49,12 +60,30 @@ export default class NavBar extends Component {
           </div>
         </div>
         <div className="select-container">
-          <Select value={format} onChange={this.handleChange}>
+          <Select value={format} onChange={this.handleFormatChange}>
             <MenuItem value="hex">HEX - #ffffff</MenuItem>
             <MenuItem value="rgb">RGB - rgb(255, 255, 255)</MenuItem>
             <MenuItem value="rgba">RGBA - rgba(255, 255, 255, 1.0) </MenuItem>
           </Select>
         </div>
+        <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+          open={open}
+          autoHideDuration={3000}
+          message={<span id="msg-id">Format Changed!</span>}
+          ContentProps={{ "aria-describedby": "msg-id" }}
+          onClose={this.closeSnackBar}
+          action={[
+            <IconButton
+              onClick={this.closeSnackBar}
+              color="inherit"
+              key="close"
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+          ]}
+        />
       </header>
     );
   }
