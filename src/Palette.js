@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import ColorBox from "./ColorBox";
-import "./Palette.css";
+import PaletteFooter from "./PaletteFooter";
 import NavBar from "./NavBar";
-export default class Palette extends Component {
+import { withStyles } from "@material-ui/core/styles";
+import styles from "./styles/PaletteStyles";
+
+class Palette extends Component {
   state = {
     level: 500,
     format: "hex"
@@ -21,24 +24,32 @@ export default class Palette extends Component {
   };
 
   render() {
-    const { colors, paletteName, emoji } = this.props.palette;
+    const { colors, paletteName, emoji, id } = this.props.palette;
+    const { classes } = this.props;
     const { level, format } = this.state;
     const colorBoxes = colors[level].map(color => (
-      <ColorBox background={color[format]} name={color.name} key={color.id} />
+      <ColorBox
+        background={color[format]}
+        name={color.name}
+        key={color.id}
+        id={color.id}
+        paletteId={id}
+        showingFullPalette
+      />
     ));
     return (
-      <div className="Palette">
+      <div className={classes.Palette}>
         <NavBar
           level={level}
           changeLevel={this.changeLevel}
           handleChange={this.changeFormat}
+          showingAllColors
         />
-        <div className="Palette-colors">{colorBoxes}</div>
-        <footer className="Palette-footer">
-          {paletteName}
-          <span className="emoji">{emoji}</span>
-        </footer>
+        <div className={classes.colors}>{colorBoxes}</div>
+        <PaletteFooter paletteName={paletteName} emoji={emoji} />
       </div>
     );
   }
 }
+
+export default withStyles(styles)(Palette);
