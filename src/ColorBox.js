@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import chroma from "chroma-js";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import Palette from "./Palette";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles/ColorBoxStyles";
 

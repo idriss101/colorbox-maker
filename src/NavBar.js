@@ -31,12 +31,7 @@ class NavBar extends Component {
   };
 
   render() {
-    const {
-      level,
-      changeLevel,
-      handleFormatChange,
-      showingAllColors
-    } = this.props;
+    const { level, changeLevel, showingAllColors } = this.props;
     const { format, open } = this.state;
     const { classes } = this.props;
     return (
