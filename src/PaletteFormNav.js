@@ -8,7 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { withStyles } from "@material-ui/core/styles";
 import PaletteMetaForm from "./PaletteMetaForm";
 
@@ -25,6 +24,7 @@ const styles = theme => ({
     }),
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     height: "64px"
   },
   appBarShift: {
@@ -39,12 +39,21 @@ const styles = theme => ({
     marginLeft: 12,
     marginRight: 20
   },
-  navBtn: {}
+  navBtn: {
+    marginRight: "1rem",
+    "& a ": {
+      textDecoration: "none"
+    }
+  },
+  button: {
+    margin: "0 0.5rem"
+  }
 });
 
 class PaletteFormNav extends Component {
   state = {
-    newPaletteName: ""
+    newPaletteName: "",
+    formShowing: false
   };
 
   handleChange = evt => {
@@ -53,9 +62,15 @@ class PaletteFormNav extends Component {
     });
   };
 
+  showForm = () => {
+    this.setState({
+      formShowing: true
+    });
+  };
+
   render() {
     const { classes, open, palettes, handleSubmit } = this.props;
-    const { newPaletteName } = this.state;
+
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -80,14 +95,28 @@ class PaletteFormNav extends Component {
             </Typography>
           </Toolbar>
           <div className={classes.navBtn}>
-            <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.showForm}
+              className={classes.button}
+            >
+              Save
+            </Button>
             <Link to="/">
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+              >
                 Go Back
               </Button>
             </Link>
           </div>
         </AppBar>
+        {this.state.formShowing && (
+          <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
+        )}
       </div>
     );
   }
