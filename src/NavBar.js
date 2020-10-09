@@ -8,6 +8,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import styles from "./styles/NavBarStyles";
+
 import { IconButton } from "@material-ui/core";
 
 class NavBar extends Component {
