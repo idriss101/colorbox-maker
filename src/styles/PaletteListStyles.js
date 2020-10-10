@@ -1,4 +1,5 @@
 import sizes from "./sizes";
+import background from "./bg.svg";
 
 export default {
   root: {
@@ -7,7 +8,10 @@ export default {
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
-    overflow: "scroll"
+    overflow: "scroll",
+    /* background by SVGBackgrounds.com */
+    backgroundColor: "#394bad",
+    backgroundImage: `url(${background})`
   },
   container: {
     width: "50%",
@@ -46,5 +50,8 @@ export default {
       gridTemplateColumns: "repeat(1, 100%)",
       gridGap: "1rem"
     }
+  },
+  heading: {
+    fontSize: "2rem"
   }
 };
