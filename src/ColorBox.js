@@ -41,8 +41,7 @@ class ColorBox extends Component {
             style={{ background: background }}
           ></div>
           <div className={`${classes.copyMessage} ${copied && "show"}`}>
-            <h1>Copied!</h1>{" "}
-            <p className={classes.copyText}>{this.props.background}</p>
+            <h1>Copied!</h1> <p className={classes.copyText}>{background}</p>
           </div>
           <div className="copy-container">
             <div className={classes.boxContent}>
